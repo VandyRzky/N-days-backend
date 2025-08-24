@@ -3,13 +3,11 @@ package ndays.backend.main.model
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 
-data class UpdateAuthorRequest(
-
+data class AddressRequest(
+    @field:NotBlank
     @Size(max = 100)
-    var firstName:String?,
-
+    val city: String,
+    @field:NotBlank
     @Size(max = 100)
-    var lastName:String?,
-
-    val address: UpdateAddressRequest?
+    val postCode: String
 )

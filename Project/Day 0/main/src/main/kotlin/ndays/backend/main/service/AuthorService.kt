@@ -1,10 +1,8 @@
 package ndays.backend.main.service
 
+import ndays.backend.main.entity.Address
 import ndays.backend.main.entity.Author
-import ndays.backend.main.model.AuthorResponse
-import ndays.backend.main.model.CreateAuthorRequest
-import ndays.backend.main.model.UpdateAuthorRequest
-import ndays.backend.main.model.WebResponse
+import ndays.backend.main.model.*
 import ndays.backend.main.repository.AuthorRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.findByIdOrNull
@@ -17,10 +15,17 @@ class AuthorService (
     val authorRepository: AuthorRepository
 ){
     fun addAuthor(create: CreateAuthorRequest):AuthorResponse{
+        val address = Address(
+            id = "address-" + UUID.randomUUID().toString(),
+            city = create.address.city,
+            postCode = create.address.postCode
+        )
+
         val author = Author(
-            id = UUID.randomUUID().toString(),
+            id = "author-" + UUID.randomUUID().toString(),
             lastName = create.lastName,
-            firstName = create.firstName
+            firstName = create.firstName,
+            address = address
         )
 
         authorRepository.save(author)
@@ -47,6 +52,17 @@ class AuthorService (
             isUpdate = true
         }
 
+        if (request.address != null){
+            if (!request.address.city.isNullOrBlank()){
+                author.address.city = request.address.city!!
+            }
+            if (!request.address.postCode.isNullOrBlank()){
+                author.address.postCode = request.address.postCode!!
+            }
+
+            isUpdate = true
+        }
+
         if (isUpdate){
             authorRepository.save(author)
         }
@@ -64,11 +80,20 @@ class AuthorService (
         return authorRepository.findByIdOrNull(id)!!
     }
 
+    fun createAddressResponse(address: Address):AddressResponse{
+        return AddressResponse(
+            id = address.id,
+            city = address.city,
+            postCode = address.postCode
+        )
+    }
+
     fun toAuthorResponse(author: Author): AuthorResponse{
         return AuthorResponse(
             id = author.id,
             firstName = author.firstName,
-            lastName = author.lastName
+            lastName = author.lastName,
+            addressResponse = createAddressResponse(author.address)
         )
     }
 }

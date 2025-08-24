@@ -10,5 +10,7 @@ data class CreateAuthorRequest(
 
     @field:NotBlank
     @Size(max = 100)
-    var lastName:String
+    var lastName:String,
+
+    val address: AddressRequest
 )

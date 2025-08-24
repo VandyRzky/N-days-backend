@@ -11,7 +11,11 @@
     ```json
     {
       "firstName": "firstName",
-      "lastName": "lastName"
+      "lastName": "lastName",
+      "address": {
+         "city": "city",
+         "postCode": "postCode"
+      } 
     }
     ```
 - Response Body:
@@ -20,7 +24,11 @@
       "data": {
         "id": "id",
         "firstName": "firstName",
-        "lastName": "lastName"
+        "lastName": "lastName",
+        "address": {
+          "city": "city",
+          "postCode": "postCode"
+        } 
       },
       "error": null
     }
@@ -35,12 +43,20 @@
     {
       "id": "id",
       "firstName": "firstName",
-      "lastName": "lastName"
+      "lastName": "lastName",
+      "address": {
+        "city": "city",
+        "postCode": "postCode"
+      }
     },
     {
       "id": "id",
       "firstName": "firstName",
-      "lastName": "lastName"
+      "lastName": "lastName",
+      "address": {
+        "city": "city",
+        "postCode": "postCode"
+      }
     }
   ],
   "error": null
@@ -52,7 +68,11 @@
     ```json
     {
       "firstName": "firstName",
-      "lastName": "lastName"
+      "lastName": "lastName",
+      "address": {
+        "city": "city",
+        "postCode": "postCode"
+      } 
     }
     ```
 - Response Body:
@@ -61,7 +81,11 @@
       "data": {
         "id": "id",
         "firstName": "firstName",
-        "lastName": "lastName"
+        "lastName": "lastName",
+        "address": {
+          "city": "city",
+          "postCode": "postCode"
+        } 
       },
       "error": null
     }

@@ -48,7 +48,7 @@ class AuthorController(
     fun deleteAuthor(@PathVariable("id") id:String):WebResponse<String>{
         authorService.deleteAuthor(id)
         return WebResponse(
-            data = "Dellete berhasil",
+            data = "Delete berhasil",
             error = null
         )
     }
