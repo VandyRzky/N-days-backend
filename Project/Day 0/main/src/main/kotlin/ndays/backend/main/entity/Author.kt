@@ -1,12 +1,7 @@
 package ndays.backend.main.entity
 
-import jakarta.persistence.CascadeType
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.OneToOne
-import jakarta.persistence.Table
+import com.fasterxml.jackson.annotation.JsonManagedReference
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "author")
@@ -20,5 +15,10 @@ data class Author(
 
     @OneToOne(cascade = [CascadeType.ALL], orphanRemoval = true)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    val address: Address
+    val address: Address,
+
+
+    @OneToMany(mappedBy = "author", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @JsonManagedReference
+    val books: List<Book> = mutableListOf()
 )
