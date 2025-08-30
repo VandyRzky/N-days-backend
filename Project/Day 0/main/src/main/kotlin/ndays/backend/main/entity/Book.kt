@@ -6,7 +6,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "book")
-data class Book(
+class Book(
     @Id
     val id: String,
 
@@ -20,6 +20,10 @@ data class Book(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     @JsonManagedReference
-    val author: Author? = null
+    val author: Author? = null,
 
+
+    @ManyToMany(mappedBy = "book")
+    @JsonManagedReference
+    val user: MutableSet<User> = mutableSetOf()
 )
