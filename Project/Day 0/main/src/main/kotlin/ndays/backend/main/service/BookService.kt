@@ -60,6 +60,11 @@ class BookService (
         bookRepository.deleteById(id)
     }
 
+    fun getBookByTitle(title: String): BookResponse{
+        val book = bookRepository.findByTitle(title)
+        return createBookResponse(book)
+    }
+
     fun createAddressResponse(address: Address): AddressResponse {
         return AddressResponse(
             id = address.id,
