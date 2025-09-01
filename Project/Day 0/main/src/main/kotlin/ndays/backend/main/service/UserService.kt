@@ -37,6 +37,18 @@ class UserService(
         return response
     }
 
+    fun getUserByFirstName(firstName: String): UserResponse{
+        val response = userRepository.findByFirstName(firstName) ?: throw IllegalArgumentException()
+
+        return createUserResponse(response)
+    }
+
+    fun getUserByLastName(lastName: String): UserResponse{
+        val response = userRepository.findByLastName(lastName) ?: throw IllegalArgumentException()
+
+        return createUserResponse(response)
+    }
+
     fun deleteUser(id: String){
         userRepository.deleteById(id)
     }

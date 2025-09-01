@@ -51,6 +51,28 @@ class UserController(
         )
     }
 
+    @GetMapping("/api/user/search")
+    fun getUserByName(@RequestParam(required = false) firstName:String?,
+                      @RequestParam(required = false) lastName: String?): WebResponse<UserResponse?>{
+        val response = when {
+            firstName != null -> userService.getUserByFirstName(firstName)
+            lastName != null -> userService.getUserByLastName(lastName)
+            else -> null
+        }
+
+        return if (response != null) {
+            WebResponse(
+                data = response,
+                error = null
+            )
+        } else {
+            WebResponse(
+                data = null,
+                error = "User not found or missing parameter"
+            )
+        }
+    }
+
     @GetMapping("/api/{id}/rent")
     fun getBookByUser(@PathVariable("id") id:String):WebResponse<GetRentResponse>{
         val response = userService.getBook(id)
