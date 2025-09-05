@@ -6,3 +6,4 @@
 - Day 3: [many-ton-many relation](./Documentation/day-3.md)
 - Day 4: [Query Method JPA](./Documentation/day-4.md)
 - Day 5: [JPQL vs Native Query](./Documentation/day-5.md)
+- Day 6: [Migration with Flyway](./Documentation/day-6.md)
